@@ -1,0 +1,26 @@
+# Databricks
+*.dbc
+*.dbx
+.databricks/
+.notebooks/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# Data
+data/raw/*
+!data/raw/.gitkeep
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets
+*.pem
+*.key
+*.crt
