@@ -8,7 +8,7 @@ Financial institutions rely on Know Your Customer (KYC) and Enhanced Due Diligen
 SanctionsIntel structures these narratives into a semantically searchable knowledge base. By applying a Bronze–Silver–Gold (medallion) architecture, the system enables the surfacing of contextual risk signals when input narratives exhibit semantic similarity to established regulatory disclosures.
 
 ## Data Source
-The research primarily utilizes the **OpenSanctions** dataset, specifically the **FollowTheMoney (FTM)** data model. This provides a high-fidelity, structured representation of global sanctions, PEPs, and entities of interest, including the narrative "notes" and "reasons" required for semantic analysis.
+The research primarily utilizes the **OpenSanctions** dataset. While the project is grounded in the **FollowTheMoney (FTM)** data model, it specifically leverages the **Nested Targets** dataset. This variant is selected for its high-fidelity inclusion of the **`reason`** and **`notes`** narrative fields, which serve as the primary corpus for semantic embedding and similarity analysis.
 
 ## Design Principles
 - **Deterministic Transformations:** Prioritizing structured ETL over black-box automation.
