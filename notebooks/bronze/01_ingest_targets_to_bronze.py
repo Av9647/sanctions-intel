@@ -1,4 +1,5 @@
 # Databricks notebook source
+# DBTITLE 1,Cell 1: Ingestion & Schema Sampling
 from pyspark.sql import functions as F
 
 # Read tiny slice (500 lines) to capture the schema
@@ -16,6 +17,7 @@ dbutils.fs.put("/Volumes/workspace/default/raw_data/targets_schema.json", schema
 
 # COMMAND ----------
 
+# DBTITLE 1,Cell 2: Narrative Audit (The "Semantic" Look)
 from pyspark.sql import functions as F
 
 # Check how many entities have narrative text deep in the properties struct
@@ -33,6 +35,7 @@ display(narrative_stats)
 
 # COMMAND ----------
 
+# DBTITLE 1,Cell 3: The Bronze Write (Persistence)
 # Write nested JSON to catalog as a delta table
 (raw_df.write.format("delta")
 .mode("overwrite")
