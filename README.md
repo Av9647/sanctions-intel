@@ -40,3 +40,6 @@ This repository is an engineering research exercise. It is not a production sanc
 ## Status
 - **Architecture:** Medallion (Bronze/Silver/Gold) on Databricks
 - **Vector Logic:** Embedding-based similarity search
+
+## License
+Released under the [Apache License 2.0](./LICENSE).  
