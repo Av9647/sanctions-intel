@@ -94,6 +94,8 @@ The retrieval engine is decoupled from the data pipeline, ensuring high-speed in
     
 -   **Retrieval-Augmented Generation (RAG):** When a search is executed, the FAISS index identifies the nearest vector distance (e.g., matching "Aviation" and "Composite" concepts). The narrative context of this top hit is injected into a strict, predefined prompt.
     
+-   **LLM Orchestration (MLflow):** Leverages the MLflow Deployments SDK to interface with Databricks Foundation Model endpoints. This provides a unified, governed client to manage model discovery and inference for the `Llama 3.3 70B` model.
+    
 -   **LLM Reasoning:** The Databricks Foundation Model endpoint (`databricks-meta-llama-3-3-70b-instruct`) receives the augmented prompt and acts as an expert analyst, generating a factual, concise explanation of _why_ the identified entity matches the user's risk query.
 
 ## Setup & Deployment
