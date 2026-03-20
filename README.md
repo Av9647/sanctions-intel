@@ -7,8 +7,9 @@ SanctionsIntel is a data engineering research project focused on the application
 3.  [Technical Implementation](#technical-implementation)
 4.  [Semantic Search & RAG Flow](#semantic-search--rag-flow)
 5.  [Setup & Deployment](#setup--deployment)
-6.  [Data Source](#data-source)
-7.  [License](#license)
+6.  [Tech Stack](#tech-stack)
+7.  [Data Source](#data-source)
+8.  [License](#license)
 
 ## Conceptual Framework
 Financial institutions rely on Know Your Customer (KYC) and Enhanced Due Diligence (EDD) to manage regulatory exposure. While traditional systems focus on deterministic name and identifier matching, regulatory disclosures (such as OFAC or EU sanctions) contain rich narrative descriptions detailing sanctioned behaviors and typologies.
@@ -148,6 +149,16 @@ To run this project end-to-end using a Databricks Workspace (Free Edition):
     -   The notebook will build the FAISS index in memory and prompt the Llama 3.3 model.
         
     -  ![RAG Output](assets/04_rag_output.png)
+
+## Tech Stack
+-   Databricks
+-   PySpark
+-   Delta Lake
+-   LangChain
+-   MLflow
+-   FAISS
+-   Llama 3.3 (70B)
+-   SentenceTransformers
 
 ## Data Source
 The research primarily utilizes the OpenSanctions dataset (https://www.opensanctions.org/datasets/default/), specifically the `targets.nested.json` dataset based on the FollowTheMoney (FTM) data model. This variant provides high-fidelity inclusion of `reason` and `notes` narrative fields, which serve as the primary corpus for semantic embedding and similarity analysis.
