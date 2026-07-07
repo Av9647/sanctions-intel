@@ -52,7 +52,7 @@ search_results_df = spark.createDataFrame(matches[["entity_id", "similarity_scor
 final_candidates = (search_results_df
     .join(spark.table("default.gold_vectors"), on="entity_id")
     .dropDuplicates(["entity_id"]) # Only show each company once
-    .select("entity_name", "similarity_score")
+    .select("entity_name", "gold_text", "similarity_score")
     .orderBy("similarity_score")
 )
 
@@ -83,16 +83,22 @@ try:
     # We use .first() because we only want to analyze the #1 best match for now
     best_match_row = final_candidates.first()
     company_name = best_match_row["entity_name"]
+    retrieved_context = best_match_row["gold_text"]
     score = best_match_row["similarity_score"]
 
     # 3. Create a targeted prompt
     prompt = f"""
-    Context: A vector search of 1.19 million industry records identified '{company_name}' 
-    as the most relevant entity (Similarity Distance: {score:.4f}).
+    Context: A vector search identified '{company_name}' as the most relevant entity 
+    (Similarity Distance: {score:.4f}).
+
+    Retrieved Sanctions Record:
+    "{retrieved_context}"
 
     User Question: "I am looking for aviation industries involving drones or composites."
 
-    Task: Briefly explain why this company is a highly relevant match for drones or aviation composites.
+    Task: Based ONLY on the Retrieved Sanctions Record above, explain why this company 
+    is a relevant match. If the record does not explicitly mention drones or composites, 
+    say so explicitly rather than inferring a connection.
     """
 
     # 4. Call the LLM
